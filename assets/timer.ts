@@ -1,10 +1,16 @@
-type TimerEventType = "tick"|"end";
+export type TimerEventType = "tick"|"end";
 
-class TimerEvent extends Event {
+export class TimerEvent extends Event {
     constructor(type: TimerEventType, public time: number) {
         super(type, {});
         
     }
+}
+
+interface Timer {
+    addEventListener<K extends TimerEventType>(type: K, listener: (this: AbortSignal, ev: TimerEvent) => any, options?: boolean | AddEventListenerOptions): void;
+    addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+
 }
 
 class Timer extends EventTarget {
@@ -12,6 +18,8 @@ class Timer extends EventTarget {
     #interval: number;
     #started: boolean;
     #timerValue: number;
+
+    
 
     constructor(interval) {
         super();
@@ -21,14 +29,14 @@ class Timer extends EventTarget {
     start(duration: number) {
         this.#timerValue = duration;
         this.#started = true;
-        setInterval(this.tick, this.#interval);
+        setInterval(this.tick.bind(this), this.#interval);
     }
 
     set interval(value: number) {
         this.#interval = value;
         if (this.#started) {
             clearInterval(this.#intervalId);
-            setInterval(this.tick, value);
+            setInterval(this.tick.bind(this), value);
         }
     }
     get interval() {
@@ -50,3 +58,5 @@ class Timer extends EventTarget {
         this.dispatchEvent(myevent);
     }
 }
+
+export default Timer;

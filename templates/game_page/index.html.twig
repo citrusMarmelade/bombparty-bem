@@ -3,18 +3,29 @@
 {% block title %}Hello GamePageController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Applications/MAMP/htdocs/mysites/bombparty-bem/src/Controller/GamePageController.php'|file_link(0) }}">src/Controller/GamePageController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Applications/MAMP/htdocs/mysites/bombparty-bem/templates/game_page/index.html.twig'|file_link(0) }}">templates/game_page/index.html.twig</a></code></li>
-    </ul>
-</div>
+<section class="game_section">
+    <header class="header_game">
+        <div class='header_game_brand'>
+            <h1 class='header_game_brand__title'>BEM</h1>
+            <img class="header_game_brand__logo" src="https://cdn-icons-png.flaticon.com/512/3219/3219712.png" alt="">
+        </div>
+        <div class='header_game_timer'>
+            <h2 class="header_game__timer">00 : 00</h2>
+        </div>
+    </header>
+    <div class="letter_game">
+        <span class="letter_game__first">E</span>
+        <span class="letter_game__second">N</span>
+        <span class="letter_game__third">T</span>
+    </div>
+    <div class="bomb_game">
+        <img class="bom_game__img" src="{{ asset('/img/bombe/bomb1.png') }}" alt="">
+    </div>
+    <div class="play_game">
+        <form class="play_game_form">
+            <input class="play_game_form__input" type="text" name="" id="" placeholder="Your word ...">
+            <button class="play_game_form__btn">OK</button>
+        </form>
+    </div>
+</section>
 {% endblock %}
